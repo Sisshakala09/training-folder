@@ -1,0 +1,306 @@
+class StringPrograms
+{
+    static void Main()
+    {
+
+        string text = "CSharp Language invented in 2002";
+
+        int length = text.Length; //15
+        Console.WriteLine("The Length of a string : " + length);
+        string subString = text.Substring(7, 8);
+        Console.WriteLine("The text from a string : " + subString);
+        Console.WriteLine(text.IndexOf("harp"));
+        Console.WriteLine(text.ToUpper());
+        string newString = text.Replace("CSharp", "Java");
+        Console.WriteLine(newString);
+
+        String replaced = text.Replace(" ", "");
+        Console.WriteLine("Without space : " + replaced.Length);
+
+        int pos = text.IndexOf("Language");
+        string newText = text.Substring(pos, 8);
+        Console.WriteLine("New Text Value " + newText.ToUpper());
+
+        //Count all the blank space
+
+        string data = "CSharp,Language";
+        String[] lang = data.Split(',');
+        foreach (string valuess in lang)
+        {
+            Console.WriteLine(valuess);
+        }
+        int spaceCount = 0;
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (text[i] == ' ')
+            {
+                spaceCount++;
+            }
+        }
+        Console.WriteLine("Total blank spaces: " + spaceCount);
+
+
+int vowelCount = 0;
+text = text.ToLower(); // Convert to lowercase for easy comparison
+
+foreach (char c in text)
+{
+    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+    {
+        vowelCount++;
+    }
+}
+
+Console.WriteLine("Total vowels: " + vowelCount);
+
+    }
+}
+
+
+****************************String************************************
+
+
+class Program2
+{
+
+    static void Main()
+    {
+        // shared one
+        string a = "Niti"; // using literal // get stored in a string pool
+        string e = "Niti";
+         Console.WriteLine(object.ReferenceEquals(a, e));
+        // it's not the shared one
+        string b = new string("Niti"); //using constructor // It's treating as a new string object 
+        string d = new string("Niti");
+            Console.WriteLine(object.ReferenceEquals(b, d));
+        Console.WriteLine("The value of B is :" + b);
+        Console.WriteLine(a == b); // It's checking the value .Equals
+        Console.WriteLine(a.GetHashCode());
+        Console.WriteLine(b.GetHashCode());
+        Console.WriteLine(object.ReferenceEquals(a, b)); // false 
+
+        //  string c = b;
+        //  Console.WriteLine(c.GetHashCode());
+        //  strings literals are interned
+        string c = string.Intern(b);
+        Console.WriteLine(c.GetHashCode());
+        //Console.WriteLine(c);
+        Console.WriteLine(object.ReferenceEquals(a, c)); // true
+        // throughout the execution the hash codes will be consistent
+        Console.WriteLine(StringComparer.Ordinal.GetHashCode(a));
+         Console.WriteLine(StringComparer.Ordinal.GetHashCode(c));
+    }
+
+
+}
+
+//.Net uses a randomized string hashing to improve the security 
+
+//ArrayList
+
+*************************BookStructure_OOPS********************************************
+
+
+using System;
+
+namespace StructExample
+
+{
+
+
+    public struct Book
+    {
+        public string Title;
+        public string Author;
+        public decimal Price;
+        public short Year;
+
+
+    }
+    // It is non-primitive
+    enum DaysOfWeek
+    {
+        Monday, Tuesday, Wednesday
+
+    }
+
+    enum Status
+    {
+
+        Pending,
+        Approved,
+        Rejected
+    }
+
+
+
+    class BookStructure
+    {
+
+        static void Main(string[] arfs)
+        {
+            DaysOfWeek t1 = DaysOfWeek.Tuesday;
+            Console.WriteLine("Structure Example");
+
+            Book myBook = new Book();
+
+            myBook.Title = "CSharp";
+            myBook.Author = "ABC";
+            myBook.Price = 4545.00M;
+            myBook.Year = 2017;
+
+            Console.WriteLine(myBook.Title + myBook.Author + myBook.Price + myBook.Year);
+
+            if (t1 == DaysOfWeek.Monday || t1 == DaysOfWeek.Tuesday)
+            {
+                Console.WriteLine("either it is monday or tuesday");
+            }
+
+            else { Console.WriteLine("either it is monday or tuesday"); }
+
+            switch (t1)
+            {
+                case DaysOfWeek.Monday:
+                    Console.WriteLine("It's Monday");
+                    break;
+                case DaysOfWeek.Tuesday:
+                    Console.WriteLine("It's Tuesday");
+                    break;
+                case DaysOfWeek.Wednesday:
+                    Console.WriteLine("It's Wednesday");
+                    break;
+                default:
+                    Console.WriteLine("It's Weekend");
+                    break;
+
+                    Status s = Status.Pending;
+                    string statusstring = s.ToString();
+
+            }
+        }
+
+    }   
+
+}
+
+
+
+
+****************************************AbstractionExample.cs**********************************
+                           (for this run (MainPagramDeliveryApp.cs))
+
+
+public abstract class DeliveryPlatform
+
+{
+    
+
+
+    public string PartnerName { get; set; }
+
+    //Non abstract Method
+    public void TrackOrder()
+    {
+        Console.WriteLine("Order is being tracked : " + PartnerName);
+    }
+   //Abstracted in nature where implementation is defined by partner
+    public abstract void DeliveryOrder();
+
+}
+
+****************************************InterfaceExample.cs**********************************
+                        (for this run (MainPagramDeliveryApp.cs))
+
+
+public interface IpaymentGateway
+{
+   
+    //by default methods are abstract 
+    void ProcessPayment();
+    
+}
+
+
+****************************************ZomatoPartner.cs**********************************
+                               (for this run (MainPagramDeliveryApp.cs))
+
+
+class ZomatoPartner : DeliveryPlatform, IpaymentGateway
+{
+
+    public override void DeliveryOrder()
+    {
+
+        Console.WriteLine("Delivered in 20 mins ");
+    }
+
+    public  void ProcessPayment()
+    {
+        Console.WriteLine("Payment Gateway ( Paytm ) transaction Started ... ");
+    }
+}
+
+
+
+****************************************MainPagramDeliveryApp.cs**********************************
+                            (for this run (MainPagramDeliveryApp.cs)--this one itself)
+
+
+class DeliveryApp
+{
+
+
+    static void Main()
+    {
+        DeliveryPlatform partner = new ZomatoPartner(); // creating an object of implementation class
+        partner.PartnerName = "Zomato";
+
+        partner.TrackOrder();
+        partner.DeliveryOrder();
+
+        IpaymentGateway payment = (IpaymentGateway)partner;
+        payment.ProcessPayment();
+
+    }
+}
+
+
+****************************************EncapsulationExample.cs**********************************
+
+
+using System;
+
+class Voter
+{
+    private  int age = 0;
+
+
+    public void SetAge(int age)
+    {
+        // this keyword is used to distinguish between local variable and instance variable
+        //this also refer to the current class object
+        this.age = age;
+        if (this.age < 18)
+        {
+            Console.WriteLine("Age should be greater than 18");
+        }
+    }
+
+    private int GetAge()
+    {
+        return age;
+    }
+}
+
+class MainProgram
+{
+
+    static void Main()
+    {
+        Voter v = new Voter();
+
+        v.SetAge(12);
+        Console.WriteLine(v.GetAge());
+
+    }
+}

@@ -1,0 +1,359 @@
+Non -Generic 
+
+boxing/unboxing
+boxing :- When we convert a value type(like int ) into an object type(reference type)
+
+int num value1 = 10;
+object boxedvalue = num;  // boxing
+
+Unboxing  :-  when we extract the value type from an object
+
+int valuetype = (int)boxedvalue;  // unboxing
+
+These operations are expensive in performance :- then there will be a memory overhead  ,
+  This one is non type-safe because by mistaken wrong casting can be done which may cause a run time errors
+
+  List<Student> list = new List<Student>();
+
+  for(int i=0 ; i<5 ; i++)
+  {
+    Student s = new Student(3434,"df");
+     list.Add(s);
+  }
+
+  List<int> numbers = new List<int>();
+  numbers.Add(10);  // No boxing
+  int result = numbers[0]; // No Unboxing
+ 
+ // Non-Generic
+  List numbers = new List();
+  numbers.Add(10);  // No boxing
+  int result = numbers[0]; // No Unboxing
+
+  c# provides some wrapper classes 
+
+  Wrapper class is a class that wraps value types to provide some extra functionalities
+  System.Object which is the universal 
+
+  System.Int32 -- wraps -- value type which is int  -- Generic class for type safety at compile time only you are telling to compiler that internally should convert into int
+  System.Double -- wraps -- value type which is Double
+  Whenever we are boxing to an int ,  it is converting it into System.Object but internally it uses System.Int32;
+
+
+// See https://aka.ms/new-console-template for more information
+using System.Collections;
+class NonGenericExample
+{
+
+    static void Main()
+    {
+        // int num = 45;
+        // object boxedvalue = num; //Boxing
+
+        // Console.WriteLine(boxedvalue.GetType());
+
+        ArrayList arrayList = new ArrayList();  // It will store the values in object
+        int value = 20;
+
+        arrayList.Add(value); // Boxing
+        Console.WriteLine(arrayList.GetType());
+
+        double unboxingvalue = (double)arrayList[0]; // Unboxing
+
+        Console.WriteLine("The value after unboxing " + unboxingvalue);
+
+        //Generic one
+        List<int> intList = new List<int>();
+        intList.Add(value); // No Boxing is required
+         double value2 = intList[0]; // No unBoxing is required
+          Console.WriteLine("The value after unboxing " + value2);
+    }
+
+
+}
+
+
+*************************************Program2.cs*******************************************
+
+using System.IO;
+
+
+class Program2
+{
+
+
+    static void Main()
+    {
+
+        string path = "file1.txt";
+        string message = "File data related to c#";
+
+        //To write using FileStream
+        // Garbage collector 
+        // Manually we have to close and open (we need not to write manually open / close /flush with using keyword it automatically does)
+        FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+        
+            byte[] data = System.Text.Encoding.UTF8.GetBytes(message);
+
+            fs.Write(data, 0, data.Length);
+
+        fs.Close();
+
+        FileStream fs1 = new FileStream(path, FileMode.Open, FileAccess.Read);
+        
+            // To read the data it is important to use buffer 
+            byte[] buffer = new byte[fs1.Length];
+            fs1.Read(buffer, 0, buffer.Length);
+
+            string result = System.Text.Encoding.UTF8.GetString(buffer);
+            Console.WriteLine(result);
+            fs1.Close();
+    }
+}
+
+
+*************************************Program3.cs*******************************************
+
+using System.IO;
+using System;
+class FileOperations
+{
+
+
+    static void Main()
+    {
+
+        string logFile = "logs.txt";
+        string backupFile = "logs_backup.txt";
+        string archiveFolder = "archieve";
+        string archivedFile = Path.Combine(archiveFolder, "logs_archived.txt");
+        // creating or overwriting the file
+        File.WriteAllText(logFile, "Log initiated :" + DateTime.Now);
+        Console.WriteLine("Log File created");
+
+        File.AppendAllText(logFile, " User has logged in ");
+        File.AppendAllText(logFile, " User has uploaded a file ");
+        Console.WriteLine("The data is appended");
+
+        string[] lines = File.ReadAllLines(logFile);
+        foreach (var line in lines)
+        {
+            Console.WriteLine(line);
+        }
+
+        File.Copy(logFile, backupFile, true);
+        Console.WriteLine("BackUp of Log file is created: ");
+
+        if (!Directory.Exists(archiveFolder))
+            Directory.CreateDirectory(archiveFolder);
+        if (File.Exists(archivedFile))
+            File.Delete(archivedFile);
+
+        File.Move(logFile, archivedFile);
+        Console.WriteLine("The log file is moved to archive folder");
+
+        if (File.Exists(backupFile))
+        {
+            File.Delete(backupFile);
+            Console.WriteLine("Back Up File is deleted");
+        }
+
+
+    }
+}
+//Input Stream -- Reading the data from file or Keyboard
+
+******************************Program3Notes.txt*****************************************
+
+Operations on a file :
+Create -  
+Write
+Append
+Read
+Delete
+Copy
+Move 
+
+File stream we are using for logging purpose
+
+We want to simulate a log system ()
+
+create  a file
+write some logs
+append new logs
+read logs 
+backup(copy)
+delete 
+move 
+
+Different ways to work with files
+1. StreamReader --  reading the text file
+2. StreamWriter -- writing the text file ( PrintStream)
+3. FileStream  -- to read Binary files
+4. FileStream   -- to write binary files
+5. StreamReader -- auto buffered
+
+
+two types of files 
+Binary  --  bytes 
+Text --- human can understand  UTF-8/ASCII  
+
+**********************************************Program4.cs******************************************
+
+using System;
+using System.IO;
+
+class Program4
+{
+
+    static void Main()
+    {
+
+        using (StreamWriter writer = new StreamWriter("data.txt"))
+        {
+            writer.WriteLine("dfhhfj");
+            writer.WriteLine("dsgdg");
+
+        }
+
+        using (StreamReader reader = new StreamReader("data.txt"))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                Console.WriteLine(line);
+            }
+             
+        }
+
+    }
+
+}
+
+***************************************Program5.cs********************************************
+
+
+class ExceptionExample
+{
+
+    static void Main()
+    {
+        string fpath = "datafile.txt";
+        try
+        {
+            // int a = 10;
+            // int b = 2;
+            // int result = a / b;
+            // Console.WriteLine("The result is : " + result);
+
+            // int[] arr = { 45, 67, 78 };
+            // Console.WriteLine("The value is :" + arr[5]);
+            // using (StreamReader reader = new StreamReader(fpath))
+            // {
+            //     string content = reader.ReadToEnd();
+            //     Console.WriteLine(content);
+
+            // }
+
+            int a = int.Parse("123"); 
+
+
+        }
+
+        // catch (FileNotFoundException ex)
+        // {
+        //     Console.WriteLine("File does not exist " + ex.FileName);
+
+
+        // }
+
+        // catch (UnauthorizedAccessException ex)
+        // {
+        //     Console.WriteLine(ex.Message);
+
+        // }
+        // catch (IOException ex)
+        // {
+        //     Console.WriteLine(ex.Message);
+
+        // }
+        catch (FormatException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+      
+        // catch (DivideByZeroException e)
+        // {
+        //     Console.WriteLine("Cannot divide by Zero");
+        // }
+        // catch (IndexOutOfRangeException e)
+        // {
+        //     Console.WriteLine("Index out of range");
+        // }
+        //   catch (Exception ex)
+        // {
+        //     Console.WriteLine(ex);
+        // }
+        // finally
+        // {
+        //     Console.WriteLine("You have handled or unhandled exceptions:");
+        // }
+
+
+
+    }
+}
+
+
+**********************************Program6.cs****************************************
+
+using System;
+
+public class InvalidAgeException : Exception
+{
+
+    public InvalidAgeException()
+    //We are calling base class constructor
+         : base("Age should be greater than 20 to apply for this job ") { }
+
+    public InvalidAgeException(string message)
+     //We are calling base class constructor
+     : base(message)
+    { }
+
+}
+
+class MainProgram
+{
+
+    static void ValidateAge(int age)
+    {
+
+        if (age < 20)
+        {
+            throw new InvalidAgeException();
+        }
+    }
+    static void Main()
+    {
+        Console.WriteLine("Enter your age");
+        int age = int.Parse(Console.ReadLine());
+
+        try
+        {
+
+            ValidateAge(age); // If it will throw an exception
+            Console.WriteLine("You are eligible");
+
+        }
+        catch (InvalidAgeException ex)
+        {
+            Console.WriteLine(ex.Message);
+
+        }
+
+    }
+}
+
+// In C# we donot have throws keyword 
+

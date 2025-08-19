@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>DEmo_MathLibrary_Testing_using_NUnit</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Lenovo\OneDrive\Desktop\TRAINING\TESTING-DAY9\DEmo MathLibrary_Testing using NUnit\DEmo MathLibrary_Testing using NUnit\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Lenovo\OneDrive\Desktop\TRAINING\TESTING-DAY9\DEmo MathLibrary_Testing using NUnit\DEmo MathLibrary_Testing using NUnit\.editorconfig" />
+  </ItemGroup>
+
+</Project>

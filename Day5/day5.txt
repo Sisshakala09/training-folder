@@ -1,0 +1,481 @@
+********************************Polymorphism*****************************
+
+using System;
+
+//The ability to take many forms 
+/*method overloading -- where all methods in a class are with the same name
+but the arguments will differ (either datatype will be different or the sequence of arguments are different or order of arguments are different)
+static binding -- when compiler will identify which method
+needs to be called at compile time*/
+
+/*method overriding -- where some methods in base class and in inherited or child class are with the same name
+run time  binding -- when compiler will identify which method
+needs to be called at run time when the object will be created*/
+
+namespace oops.poly
+{
+
+    class InfoPrinter
+    {
+        public int Pages;
+        InfoPrinter()
+        {
+
+            Console.WriteLine("Constructor Called");
+        }
+
+        InfoPrinter(int Pagess)
+        {
+            this.Pages = Pagess;
+            this.Pages = this.Pages + 1;
+            Console.WriteLine("Total Pages Printed :" + this.Pages);
+        }
+        public void Print(string name, int empId)
+        {
+            Console.WriteLine("Name :" + name + " EmpId :" + empId);
+        }
+
+        public void Print(int empId, string name)
+        {
+            Console.WriteLine("Name :" + name + " EmpId :" + empId);
+        }
+
+        static void Main()
+        {
+            InfoPrinter InfPrinter = new InfoPrinter();
+            InfPrinter.Print("Niti", 1001); // At compile time 
+            InfPrinter.Print(1002, "Sakshi");
+            InfoPrinter InfPrinter1 = new InfoPrinter(23);
+            InfoPrinter InfPrinter2 = new InfoPrinter(12);
+
+
+        }
+
+    }
+}
+
+
+**********************************SingleLevelInheritance.cs****************************
+
+// /*Inheritance --- When a child class is inheriting some of the properties of base class 
+
+// In Inheritane we use some conventions like base class , super class , parent class
+
+// similarly we call the class  who has inherited the features of base class as child class,
+// sub class , derived class  */
+
+// /*Types of Inheritance*/
+// // single inheritance --- There is one base class and one child class
+
+// public class Person
+// {
+//     //properties 
+//     protected string Name { get; set; }
+//     public virtual void Display()
+//     {
+//         Console.WriteLine("Displaying Name you entered :");
+//     }
+
+//     public void setName(string Name)
+//     {
+
+//         this.Name = name;
+//     }
+// }
+
+// // Single Level
+// public class Student : Person
+// {
+
+//     // public Student(string name)
+//     // {
+//     //     Name = name;
+//     // }
+//     public int RollNumber { get; set; }
+
+//     public void Study()
+
+//     { Console.WriteLine(Name + "is studying :"); }
+
+//     static void Main()
+//     {
+
+//         Student stud = new Student();
+//         //stud.Name = "Niti";
+//         stud.setName("Niti");
+//         stud.RollNumber = 2004;
+//         stud.Display();
+//         stud.Study();
+//     }
+
+// }
+
+**********************************MultiLevelInheritance.cs****************************
+
+
+// /*Inheritance --- When a child class is inheriting some of the properties of base class 
+
+// In Inheritane we use some conventions like base class , super class , parent class
+
+// similarly we call the class  who has inherited the features of base class as child class,
+// sub class , derived class  */
+
+// /*Types of Inheritance*/
+// // Multilevel inheritance --- There is one base class and one child class and that child will become a base for another child class 
+
+// public class Father
+// { 
+
+ 
+//     public void FatherDetails()
+//     {
+//         Console.WriteLine("Father Details :");
+
+//     }
+// }
+// public class Person : Father
+// {
+//     //properties 
+//     protected string Name { get; set; }
+//     public virtual void Display()
+//     {
+//         Console.WriteLine("Displaying Name you entered :" + Name);
+//     }
+
+//     public void setName(string Name)
+//     {
+
+//         this.Name = name;
+//     }
+// }
+
+
+// public class Student : Person
+// {
+
+//     // public Student(string name)
+//     // {
+//     //     Name = name;
+//     // }
+//     public int RollNumber { get; set; }
+
+//     public void Study()
+
+//     { Console.WriteLine(Name + "is studying :"); }
+
+//     static void Main()
+//     {
+
+//         Student stud = new Student();
+//         //stud.Name = "Niti";
+//         stud.setName("Niti");
+//         stud.RollNumber = 2004;
+//         stud.FatherDetails();
+//         stud.Display();
+//         stud.Study();
+//     }
+
+// }
+
+// // Multi level
+// public class MainProgram
+// {
+//     // static void Main()
+//     // {
+
+//     //     Student stud = new Student("Niti");
+//     //    // stud.Name = "Niti";
+//     //     stud.RollNumber = 2004;
+//     //     stud.Display();
+//     //     stud.Study();
+//     // }
+
+// }
+
+
+
+**********************************HierarchicalInheritance.cs****************************
+
+// // there is HR --NameOFHR{get; set;} virtual SalaryDisplay() , AdminIncharge override , Employee  Employee e = new Employee(); e.SalaryDisplay()
+
+
+
+/*Inheritance --- When a child class is inheriting some of the properties of base class 
+
+In Inheritane we use some conventions like base class , super class , parent class
+
+similarly we call the class  who has inherited the features of base class as child class,
+sub class , derived class  */
+
+/*Types of Inheritance*/
+// Hierarchical inheritance --- When multiple child classes inherit the same base class
+
+public class Person 
+{
+    //properties 
+    protected string Name { get; set; }
+    public virtual void Display()
+    {
+        Console.WriteLine("Displaying Name you entered :" + Name);
+    }
+
+    // public void setName(string Name)
+    // {
+
+    //     this.Name = name;
+    // }
+}
+
+
+public class Student : Person
+{
+
+    // public Student(string name)
+    // {
+    //     Name = name;
+    // }
+    public int RollNumber { get; set; }
+
+    public void Study()
+
+    { Console.WriteLine(Name + "is studying :"); }
+
+    // static void Main()
+    // {
+
+    //     Student stud = new Student();
+    //     //stud.Name = "Niti";
+    //     stud.setName("Niti");
+    //     stud.RollNumber = 2004;
+    //     stud.FatherDetails();
+    //     stud.Display();
+    //     stud.Study();
+    // }
+
+}
+
+
+public class Teacher : Person
+{
+    public string Subject { get; set; }
+
+    public void Teaches()
+    {
+
+        Console.WriteLine(Name + "Teaches Computer Science");
+    }
+    static void Main()
+    {
+
+        Teacher t = new Teacher();
+        t.Name = "Niti";
+
+        t.Teaches(); // From child class i.e Teacher
+        t.Display(); // From Base class i.e. Person
+        
+    }
+
+}
+
+// there is HR --NameOFHR{get; set;} virtual SalaryDisplay() , AdminIncharge override , Employee  Employee e = new Employee(); e.SalaryDisplay()
+
+
+*********************************************MultipleInheritance***********************************
+
+//Multiple Inheritance
+
+using school;
+public interface ICurricularActivities
+{
+
+
+    void Stream();
+}
+
+public interface INonCurricularActivities
+{
+
+    void Activities();
+}
+
+public class Student : Person, ICurricularActivities, INonCurricularActivities
+{
+
+    public int RollNumber { get; set; }
+    public void Study()
+    {
+
+    }
+    public void Stream()
+    {
+        Console.WriteLine("Taken Science Stream");
+    }
+
+    public void Activities()
+    {
+        Console.WriteLine("Sports - BasketBall");
+    }
+
+
+    static void Main()
+    {
+
+        Student s = new Student();
+        Console.WriteLine("Enter the name of student");
+        string sname = Console.ReadLine();
+        s.Name = sname;
+        s.Study();
+        s.Display();
+        s.Stream();
+        s.Activities(); 
+    }
+}
+
+
+*************************************Collection****************************************
+
+// See https://aka.ms/new-console-template for more information
+using System.Collections.Generic;
+public class CollectionExamples
+{
+
+    public static void Main()
+    {
+
+        // List<string> students = new List<string>();
+        // students.Add("Niti");
+        // students.Add("Preeti");
+        // // students.Add(34);
+
+        // foreach (string student in students)
+        // {
+        //     Console.WriteLine(student);
+        // }
+
+        // Dictionary<int, string> data = new Dictionary<int, string>();
+        // data.Add(101, "Niti");
+        // data.Add(102, "Preeti");
+
+        // Console.WriteLine(data[101]);
+
+        // foreach (KeyValuePair<int, string> kv in data)
+        // {
+        //     Console.WriteLine(kv.Key + " " + kv.Value);
+        // }
+
+        // HashSet<string> employees = new HashSet<string>();
+        // employees.Add("Avc");
+        // employees.Add("xyz");
+        // employees.Add("Avc");
+
+        // foreach (string e in employees)
+        // {
+        //     Console.WriteLine(e);
+
+        // }
+
+        // Stack<string> todotask = new Stack<string>();
+        // todotask.Push("Learn C#");
+        // todotask.Push("Revise the concepts");
+        // todotask.Push("Clear your exam");
+
+        // foreach (string task in todotask)
+        // {
+        //     Console.WriteLine(task);
+        // }
+        // while (todotask.Count > 0)
+        // {
+        //     todotask.Pop();
+        //     Console.WriteLine("One task in completed ");
+        // }
+
+
+        Queue<string> tickets = new Queue<string>();
+        tickets.Enqueue("Learn C#");
+        tickets.Enqueue("Revise the concepts");
+        tickets.Enqueue("Clear your exam");
+
+        foreach (string task in tickets)
+        {
+            Console.WriteLine(task);
+        }
+    }
+
+
+
+}
+
+// Create a collection of students to store student id ,student name and  subjectmarks(key as a subject and value as a marks)
+// then display each student detail with average score
+
+
+using System;
+using System.Collections.Generic;
+
+public class Student
+{
+    public int Id;
+    public string Name;
+    public Dictionary<string, int> SubjectMarks;
+
+    public Student(int id, string name)
+    {
+        Id = id;
+        Name = name;
+        SubjectMarks = new Dictionary<string, int>();
+    }
+
+    public double GetAverage()
+    {
+        int total = 0;
+        foreach (var mark in SubjectMarks.Values)
+        {
+            total += mark;
+        }
+        return SubjectMarks.Count > 0 ? (double)total / SubjectMarks.Count : 0;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"\nStudent ID: {Id}");
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine("Subject Marks:");
+        foreach (var subject in SubjectMarks)
+        {
+            Console.WriteLine($"  {subject.Key} : {subject.Value}");
+        }
+        Console.WriteLine($"Average Score: {GetAverage():F2}");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        // Create student list
+        List<Student> students = new List<Student>();
+
+        // Add Student 1
+        Student s1 = new Student(1, "Amit");
+        s1.SubjectMarks.Add("Math", 80);
+        s1.SubjectMarks.Add("Science", 75);
+        s1.SubjectMarks.Add("English", 85);
+        students.Add(s1);
+
+        // Add Student 2
+        Student s2 = new Student(2, "Priya");
+        s2.SubjectMarks.Add("Math", 90);
+        s2.SubjectMarks.Add("Science", 88);
+        s2.SubjectMarks.Add("English", 95);
+        students.Add(s2);
+
+        // Display details of each student
+        foreach (var student in students)
+        {
+            student.Display();
+        }
+    }
+}
+
+
+

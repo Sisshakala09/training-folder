@@ -1,0 +1,32 @@
+Operations on a file :
+Create -  
+Write
+Append
+Read
+Delete
+Copy
+Move 
+
+File stream we are using for logging purpose
+
+We want to simulate a log system ()
+
+create  a file
+write some logs
+append new logs
+read logs 
+backup(copy)
+delete 
+move 
+
+Different ways to work with files
+1. StreamReader --  reading the text file
+2. StreamWriter -- writing the text file ( PrintStream)
+3. FileStream  -- to read Binary files
+4. FileStream   -- to write binary files
+5. StreamReader -- auto buffered
+
+
+two types of files 
+Binary  --  bytes 
+Text --- human can understand  UTF-8/ASCII  

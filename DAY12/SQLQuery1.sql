@@ -1,0 +1,1 @@
+select count(timestamp) from mtsstackdatanew

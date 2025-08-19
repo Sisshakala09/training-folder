@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MVCExample.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<h4>
+    Category <span style="color:red">
+        @ViewBag.Message<br/>
+        @ViewData["msg"]<br/>
+        @TempData["msg1"]
+    </span>
+</h4>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Desc)
+            </th>
+            
+
+           
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+                <th>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </th>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+                <th>
+                    @Html.DisplayFor(modelItem => item.Desc)
+                </th>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
