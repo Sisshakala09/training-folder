@@ -15,11 +15,18 @@ namespace MVCExample.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetString("UserName", "Siddhakala");
+            HttpContext.Session.SetInt32("UserId", 101);
             return View();
         }
 
         public IActionResult Privacy()
         {
+            string? userName = HttpContext.Session.GetString("UserName");
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            ViewBag.UserName = userName;
+            ViewBag.UserId = userId;
             return View();
         }
 

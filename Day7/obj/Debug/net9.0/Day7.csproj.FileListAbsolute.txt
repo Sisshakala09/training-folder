@@ -1,0 +1,15 @@
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\bin\Debug\net9.0\Day7.exe
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\bin\Debug\net9.0\Day7.deps.json
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\bin\Debug\net9.0\Day7.runtimeconfig.json
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\bin\Debug\net9.0\Day7.dll
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\bin\Debug\net9.0\Day7.pdb
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\Day7.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\Day7.AssemblyInfoInputs.cache
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\Day7.AssemblyInfo.cs
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\Day7.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\Day7.sourcelink.json
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\Day7.dll
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\refint\Day7.dll
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\Day7.pdb
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\Day7.genruntimeconfig.cache
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\Day7\obj\Debug\net9.0\ref\Day7.dll

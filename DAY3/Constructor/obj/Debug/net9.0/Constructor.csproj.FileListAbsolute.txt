@@ -1,0 +1,15 @@
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\bin\Debug\net9.0\Constructor.exe
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\bin\Debug\net9.0\Constructor.deps.json
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\bin\Debug\net9.0\Constructor.runtimeconfig.json
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\bin\Debug\net9.0\Constructor.dll
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\bin\Debug\net9.0\Constructor.pdb
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\Constructor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\Constructor.AssemblyInfoInputs.cache
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\Constructor.AssemblyInfo.cs
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\Constructor.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\Constructor.dll
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\refint\Constructor.dll
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\Constructor.pdb
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\Constructor.genruntimeconfig.cache
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\ref\Constructor.dll
+C:\Users\Lenovo\OneDrive\Desktop\TRAINING\DAY3\Constructor\obj\Debug\net9.0\Constructor.sourcelink.json

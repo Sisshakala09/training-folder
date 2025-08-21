@@ -17,6 +17,14 @@ var conn = builder.Configuration.GetConnectionString("EcomConnection") ?? throw 
 builder.Services.AddDbContext<EcomContext>(options =>
     options.UseSqlServer(conn));
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout
+    options.Cookie.HttpOnly = true;                 // Prevent JS access
+    options.Cookie.IsEssential = true;              // Required for GDPR
+});
+
+
 
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -26,7 +34,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
+app.UseSession();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
