@@ -14,6 +14,7 @@ namespace TransportManagement.Controllers
             _logger = logger;
         }
         [Authorize]
+        [ServiceFilter(typeof(LoggingResourceFilter))]
         public IActionResult Index()
         {
             return View();

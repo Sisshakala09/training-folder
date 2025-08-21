@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
@@ -37,9 +38,15 @@ namespace Models
         public int PassengerID { get; set; }
         public  string FirstName { get; set; }
         public  string gender { get; set; }
+
+        [Range(1, 120, ErrorMessage = "Age must be between 1 and 120.")]
         public int age { get; set; }
+
+        [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email format.")]
         public  string Email { get; set; }
-        public int PhoneNumber { get; set; }
+        
+        public string PhoneNumber { get; set; }
 
     }
 
