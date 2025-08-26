@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Bibliography;
 using HRISApp.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,11 +22,12 @@ builder.Services.AddDbContext<RepoContext>(options =>
 
 builder.Services.AddScoped<IDept, Dept>();
 builder.Services.AddScoped<DepartmentService, DepartmentService>();
-
-
-
-
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddScoped<IRepogeneric<Department>, Repogeneric<Department>>();
+
+builder.Services.AddScoped<ServiceClass<Department>, ServiceClass<Department>>();
+//builder.Services.AddScoped<IRepogeneric<Employee>, Repogeneric<Employee>>();
+
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();

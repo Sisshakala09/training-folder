@@ -42,7 +42,8 @@ namespace Repos.Repos
 
         public string RemoveDept(int id)
         {
-            return "Yet to implement";
+            _context.Remove(_context.Departments.Find(id));
+            return "Success";
         }
     }
 }

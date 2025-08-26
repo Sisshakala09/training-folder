@@ -9,15 +9,18 @@ namespace HRISApp.Controllers
     {
         
         private readonly DepartmentService _service;
-        public DepartmentsController(DepartmentService service)
+        private readonly ServiceClass<Department> _context;
+        public DepartmentsController(DepartmentService service,ServiceClass<Department> context)
         {
             _service = service;
+            _context = context;
         }
         // GET: DepartmentsController
         public ActionResult Index()
         {
             List<Department> deptList = _service.GetDepartments();
-            return View(deptList);
+            List<Department> dlist = _context.GetList().ToList();
+            return View(dlist);
         }
 
         // GET: DepartmentsController/Details/5
@@ -39,6 +42,9 @@ namespace HRISApp.Controllers
         {
             try
             {
+
+
+
                 TempData["message"] = _service.AddDepartment(dept);
                 return RedirectToAction(nameof(Index));
             }
