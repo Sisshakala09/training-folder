@@ -25,7 +25,7 @@ builder.Services.AddScoped<DepartmentService, DepartmentService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IRepogeneric<Department>, Repogeneric<Department>>();
 
-builder.Services.AddScoped<ServiceClass<Department>, ServiceClass<Department>>();
+builder.Services.AddScoped<ServiceClass<Department>,ServiceClass<Department>>();
 //builder.Services.AddScoped<IRepogeneric<Employee>, Repogeneric<Employee>>();
 
 
