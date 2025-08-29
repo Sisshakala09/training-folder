@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <form asp-action="AddUserToRole" method="post">
+        <div>
+            <label>User Email:</label>
+            <input type="email" name="email" required />
+        </div>
+        <div>
+            <label>Role Name:</label>
+            <input type="text" name="roleName" required />
+        </div>
+        <button type="submit">Assign Role</button>
+    </form>
+}
