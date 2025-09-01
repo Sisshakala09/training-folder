@@ -1,0 +1,56 @@
+﻿@using AdvancedLibrary.Models
+@model dynamic
+@{
+    var authors = (IEnumerable<Author>)ViewBag.Authors;
+    var genres = (IEnumerable<Genre>)ViewBag.Genres;
+    // this partial is used for both create (Book) and edit (BookDto) – we check by property existence
+    int? modelAuthorId = null;
+    int? modelYear = null;
+    string modelTitle = "";
+    HashSet<int> selected = new();
+
+    if (Model is Book b)
+    {
+        modelAuthorId = b.AuthorId;
+        modelYear = b.PublishedYear;
+        modelTitle = b.Title;
+    }
+    else // DTO
+    {
+        modelAuthorId = (int?)Model?.AuthorId;
+        modelYear = (int?)Model?.PublishedYear;
+        modelTitle = (string)Model?.Title ?? "";
+        selected = new HashSet<int>(((IEnumerable<int>)Model?.GenreIds) ?? []);
+    }
+}
+<div class="vstack gap-2">
+    <div>
+        <label class="form-label">Title</label>
+        <input id="Title" class="form-control" value="@modelTitle" />
+    </div>
+    <div>
+        <label class="form-label">Author</label>
+        <select id="AuthorId" class="form-select">
+            @foreach (var a in authors)
+            {
+                <option value="@a.Id" selected="@(a.Id == modelAuthorId)">@a.Name</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label class="form-label">Published Year</label>
+        <input id="PublishedYear" class="form-control" type="number" value="@(modelYear)" />
+    </div>
+    <div>
+        <label class="form-label">Genres</label>
+        <div class="d-flex flex-wrap gap-2">
+            @foreach (var g in genres)
+            {
+                <label class="form-check-label">
+                    <input class="form-check-input me-1" type="checkbox" name="GenreIds" value="@g.Id" @(selected.Contains(g.Id) ? "checked" : "") />
+                    @g.Name
+                </label>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Books";
+}
+<div class="container py-3">
+    <h2>Books</h2>
+
+    <div class="row g-2 mb-2">
+        <div class="col-auto">
+            <input id="search" class="form-control" placeholder="Search title or author" />
+        </div>
+        <div class="col-auto">
+            <select id="sort" class="form-select">
+                <option value="">Title ↑</option>
+                <option value="title_desc">Title ↓</option>
+                <option value="year">Year ↑</option>
+                <option value="year_desc">Year ↓</option>
+                <option value="author">Author ↑</option>
+                <option value="author_desc">Author ↓</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button id="btnCreate" class="btn btn-primary">+ Add Book</button>
+        </div>
+    </div>
+
+    <div id="listArea">Loading…</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formTitle">Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="formBody">
+                <!-- partial form loads here -->
+            </div>
+            <div class="modal-footer">
+                <button id="saveBtn" type="button" class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let page = 1, pageSize = 10;
+
+        async function loadList(){
+            const search = document.getElementById('search').value;
+            const sort = document.getElementById('sort').value;
+            const url = `/Books/List?search=${encodeURIComponent(search)}&sort=${encodeURIComponent(sort)}&page=${page}&pageSize=${pageSize}`;
+            const html = await fetch(url).then(r=>r.text());
+            document.getElementById('listArea').innerHTML = html;
+        }
+        document.getElementById('search').addEventListener('input', debounce(loadList, 400));
+        document.getElementById('sort').addEventListener('change', loadList);
+
+        document.getElementById('btnCreate').addEventListener('click', async () => {
+            const html = await fetch('/Books/Create').then(r=>r.text());
+            document.getElementById('formBody').innerHTML = html;
+            document.getElementById('formTitle').innerText = 'Add Book';
+            document.getElementById('saveBtn').onclick = saveCreate;
+            new bootstrap.Modal('#formModal').show();
+        });
+
+        async function saveCreate(){
+            const dto = readForm();
+            const res = await fetch('/Books/Create', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(dto) });
+            const data = await res.json();
+            alert(data.message);
+            if(data.ok){ bootstrap.Modal.getInstance(document.getElementById('formModal')).hide(); loadList(); }
+        }
+
+        async function editBook(id){
+            const html = await fetch(`/Books/Edit/${id}`).then(r=>r.text());
+            document.getElementById('formBody').innerHTML = html;
+            document.getElementById('formTitle').innerText = 'Edit Book';
+            document.getElementById('saveBtn').onclick = () => saveEdit(id);
+            new bootstrap.Modal('#formModal').show();
+        }
+        async function saveEdit(id){
+            const dto = readForm();
+            const res = await fetch(`/Books/Edit/${id}`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(dto) });
+            const data = await res.json();
+            alert(data.message);
+            if(data.ok){ bootstrap.Modal.getInstance(document.getElementById('formModal')).hide(); loadList(); }
+        }
+        async function deleteBook(id){
+            if(!confirm('Delete this book?')) return;
+            const res = await fetch(`/Books/Delete/${id}`, { method:'POST' });
+            const data = await res.json();
+            alert(data.message);
+            if(data.ok) loadList();
+        }
+
+        // Read form inputs into DTO
+        function readForm(){
+            const title = document.getElementById('Title').value;
+            const authorId = parseInt(document.getElementById('AuthorId').value);
+            const publishedYear = parseInt(document.getElementById('PublishedYear').value || '0') || null;
+            const genreIds = Array.from(document.querySelectorAll('input[name=GenreIds]:checked')).map(cb=>parseInt(cb.value));
+            return { title, authorId, publishedYear, genreIds };
+        }
+
+        // simple debounce
+        function debounce(fn, wait){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }}
+
+        // initial load
+        loadList();
+    </script>
+}

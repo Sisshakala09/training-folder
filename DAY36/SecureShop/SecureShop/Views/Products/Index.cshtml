@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SecureShop.Models.Product>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Products</h2>
+
+@foreach (var p in Model)
+{
+    <div class="product">
+        <h3>@p.Name</h3>
+        <p>@p.Description</p>
+        <p>Price: @p.Price.ToString("C")</p>
+
+        <h4>Reviews</h4>
+        @foreach (var r in p.Reviews ?? Enumerable.Empty<SecureShop.Models.Review>())
+        {
+            <div class="review">
+                <!-- Razor encodes user content, preventing XSS -->
+                <p>@r.Content</p>
+                <small>By: @r.User?.UserName ?? "Unknown" — Rating: @r.Rating</small>
+            </div>
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-controller="Products" asp-action="AddReview" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="ProductId" value="@p.Id" />
+                <div>
+                    <label>Review</label>
+                    <textarea name="Content" maxlength="500" required></textarea>
+                </div>
+                <div>
+                    <label>Rating</label>
+                    <input type="number" name="Rating" min="1" max="5" required />
+                </div>
+                <button type="submit">Submit Review</button>
+            </form>
+        }
+        else
+        {
+            <p><a asp-controller="Account" asp-action="Login">Login</a> to write a review.</p>
+        }
+    </div>
+}

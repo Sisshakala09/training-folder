@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AdvancedLibrary.Models.Book>
+@{
+    // values from ViewBag
+    int total = ViewBag.Total ?? 0;
+    int page = ViewBag.Page ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
+    int pages = (int)Math.Ceiling((double)total / Math.Max(1, pageSize));
+}
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Genres</th>
+            <th style="width:160px"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>@b.Title</td>
+                <td>@b.Author?.Name</td>
+                <td>@b.PublishedYear</td>
+                <td>@string.Join(", ", b.Genres.Select(g => g.Name))</td>
+                <td>
+                    <button class="btn btn-sm btn-secondary" onclick="editBook(@b.Id)">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteBook(@b.Id)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (pages > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= pages; i++)
+            {
+                <li class="page-item @(i == page ? "active" : "")">
+                    <a class="page-link" href="javascript:void(0)" onclick="page=@i; loadList();">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
