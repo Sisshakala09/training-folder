@@ -1,0 +1,26 @@
+<h1>ProfileBook (Demo)</h1>
+
+<section>
+  <h2>Register</h2>
+  <input #ruser placeholder="username"><input #remail placeholder="email"><input #rpass type="password" placeholder="password">
+  <button (click)="register(ruser.value, remail.value, rpass.value)">Register</button>
+</section>
+
+<section>
+  <h2>Login</h2>
+  <input #luser placeholder="username"><input #lpass type="password" placeholder="password">
+  <button (click)="login(luser.value, lpass.value)">Login</button>
+</section>
+
+<section>
+  <h2>Create Post</h2>
+  <textarea #pcontent placeholder="content"></textarea><br>
+  <input type="file" (change)="onFile($event)">
+  <button (click)="createPost()">Create Post</button>
+</section>
+
+<section>
+  <h2>Approved Posts</h2>
+  <button (click)="loadPosts()">Load</button>
+  <ul><li *ngFor="let p of posts">{{p.content}} — {{p.user?.username}} <img *ngIf="p.imageUrl" [src]="'http://localhost:5000'+p.imageUrl" width="80"></li></ul>
+</section>

@@ -1,0 +1,22 @@
+[HttpPost]
+   [ValidateAntiForgeryToken]
+   public async Task<IActionResult> Create([Bind("id,status,img")] Carousel carousel, IFormFile img)
+   {
+       try
+       {
+           carousel.photoPath = "Images/Carousels/" + img.FileName;
+           string name = img.FileName;
+           var filePath = Path.Combine("wwwroot/images/Carousels", name);
+           using (var sr = new FileStream(filePath, FileMode.Create))
+           {
+               await img.CopyToAsync(sr);
+           }
+           _context.Add(carousel);
+           await _context.SaveChangesAsync();
+           return RedirectToAction(nameof(Index));
+       }
+       catch (Exception ex)
+       {
+           return View(carousel);
+       }
+   }

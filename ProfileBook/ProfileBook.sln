@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProfileBook", "ProfileBook", "{0B2EDA3B-9198-EB95-E6C4-2F9D785A77AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileBook.Api", "ProfileBook\ProfileBook.Api\ProfileBook.Api.csproj", "{9490B3D8-5722-CCF1-1486-EB2843D75ED9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9490B3D8-5722-CCF1-1486-EB2843D75ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9490B3D8-5722-CCF1-1486-EB2843D75ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9490B3D8-5722-CCF1-1486-EB2843D75ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9490B3D8-5722-CCF1-1486-EB2843D75ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9490B3D8-5722-CCF1-1486-EB2843D75ED9} = {0B2EDA3B-9198-EB95-E6C4-2F9D785A77AB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82E7F318-EDE2-4FAC-A08A-AA14574D7553}
+	EndGlobalSection
+EndGlobal
