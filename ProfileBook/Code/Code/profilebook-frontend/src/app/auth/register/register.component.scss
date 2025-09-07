@@ -1,0 +1,27 @@
+@import '../../../styles/_variables.scss';
+
+.auth-page{
+  min-height: calc(100vh - 72px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: $space-lg 0;
+
+  .card {
+    width: 100%;
+    max-width: 520px;
+    padding: $space-lg;
+    border-radius: 12px;
+    background: $color-card;
+    box-shadow: 0 18px 50px rgba(15,20,25,0.06);
+    border: 1px solid rgba(31,41,55,0.04);
+  }
+
+  h2 { margin:0 0 $space-sm 0; font-size:1.5rem; color: $color-text; }
+  label { display:block; margin-bottom: $space-sm; color: $color-text; .label-text{ display:block; font-weight:600; margin-bottom:$space-xs; } }
+  .actions { display:flex; gap:$space-sm; margin-top:$space-md; align-items:center; }
+
+  .muted { color: $color-muted; margin-top: $space-md; text-align:center; }
+  .error { color: $color-danger; margin-bottom: $space-sm; }
+  .btn-primary { min-width: 120px; }
+}

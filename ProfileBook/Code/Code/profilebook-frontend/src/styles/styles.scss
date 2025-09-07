@@ -1,0 +1,89 @@
+// src/styles/styles.scss
+@import './styles/_variables';
+
+* { transition: background .12s ease, box-shadow .12s ease, transform .08s ease; }
+
+
+* { box-sizing: border-box; }
+html,body,#root,#app-root { height: 100%; }
+html { font-family: $font-sans; font-size: $font-size-base; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; background: linear-gradient(180deg, #041025 0%, #061627 100%); color: $color-white; }
+body { margin: 0; line-height: $line-height-base; }
+
+// Container
+.container {
+  width: 100%;
+  padding-left: $space-md;
+  padding-right: $space-md;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media(min-width: $bp-md) {
+    max-width: 960px;
+    padding-left: $space-lg;
+    padding-right: $space-lg;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-xs;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: $radius-md;
+  padding: 0.6rem 1rem;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.btn-primary {
+  @extend .btn;
+  background: linear-gradient(180deg, $color-primary, $color-primary-600);
+  color: $color-white;
+  box-shadow: $shadow-sm;
+}
+.btn-ghost {
+  @extend .btn;
+  background: transparent;
+  color: $color-white;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+// Card
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: $shadow-md;
+  border-radius: $radius-md;
+  padding: $space-md;
+}
+
+// Inputs
+.input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: $color-white;
+  outline: none;
+  transition: box-shadow .12s ease, transform .08s ease;
+}
+.input:focus {
+  box-shadow: 0 6px 18px rgba(79,70,229,0.12);
+  border-color: rgba(79,70,229,0.6);
+}
+
+// Utility
+.text-muted { color: rgba(255,255,255,0.6); }
+.center { display:flex; align-items:center; justify-content:center; }
+.mt-1 { margin-top: $space-sm; }
+.mt-2 { margin-top: $space-md; }
+.mb-1 { margin-bottom: $space-sm; }
+.small { font-size: 0.875rem; color: $color-muted; }
+
+a { color: $color-accent; text-decoration: none; &:hover { text-decoration: underline; } }
+
+// Focus for accessibility
+:focus { outline: 3px solid rgba(79,70,229,0.18); outline-offset: 3px; }

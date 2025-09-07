@@ -1,0 +1,86 @@
+// src/styles.scss
+@import './styles/_variables';
+
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+html { font-family: $font-sans; font-size: $font-size-base; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; background: $color-bg; color: $color-text; }
+body { margin: 0; line-height: $line-height-base; background: linear-gradient(180deg, $color-bg 0%, $color-page 100%); }
+
+// container
+.container {
+  width: 100%;
+  padding-left: $space-md;
+  padding-right: $space-md;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media(min-width: $bp-md) {
+    max-width: 960px;
+    padding-left: $space-lg;
+    padding-right: $space-lg;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-xs;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: $radius-sm;
+  padding: 0.55rem 0.9rem;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.btn-primary {
+  @extend .btn;
+  background: linear-gradient(180deg, $color-primary, $color-primary-600);
+  color: $color-white;
+  box-shadow: $shadow-sm;
+}
+.btn-ghost {
+  @extend .btn;
+  background: transparent;
+  color: $color-text;
+  border: 1px solid rgba(31,41,55,0.06);
+}
+
+// Card
+.card {
+  background: $color-card;
+  box-shadow: $shadow-md;
+  border-radius: $radius-md;
+  padding: $space-md;
+}
+
+// Inputs
+.input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid rgba(31,41,55,0.08);
+  color: $color-text;
+  outline: none;
+  transition: box-shadow .12s ease, transform .08s ease;
+}
+.input:focus {
+  box-shadow: 0 8px 24px rgba(37,99,235,0.12);
+  border-color: rgba(37,99,235,0.5);
+}
+
+// Utility
+.text-muted { color: $color-muted; }
+.center { display:flex; align-items:center; justify-content:center; }
+.mt-1 { margin-top: $space-sm; }
+.mt-2 { margin-top: $space-md; }
+.mb-1 { margin-bottom: $space-sm; }
+.small { font-size: 0.9rem; color: $color-muted; }
+
+a { color: $color-primary; text-decoration: none; &:hover { text-decoration: underline; } }
+
+// Focus for accessibility
+:focus { outline: 3px solid rgba(37,99,235,0.12); outline-offset: 3px; }

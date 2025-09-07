@@ -1,0 +1,36 @@
+// src/styles/_variables.scss
+// Light theme design tokens
+
+$color-bg: #f5f7fb;
+$color-page: #f2f6fb;
+$color-surface: #ffffff;
+$color-white: #ffffff;
+$color-text: #1f2937;         // dark text
+$color-muted: #6b7280;
+$color-primary: #2563eb;      // vivid blue
+$color-primary-600: #1e40af;
+$color-accent: #06b6d4;
+$color-success: #10b981;
+$color-danger: #ef4444;
+$color-card: #ffffff;
+$glass: rgba(15,20,25,0.02);
+
+$shadow-sm: 0 1px 3px rgba(15,20,25,0.06);
+$shadow-md: 0 12px 30px rgba(15,20,25,0.08);
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-full: 9999px;
+
+$space-xxs: 4px;
+$space-xs: 8px;
+$space-sm: 12px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+$font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+$font-size-base: 16px;
+$line-height-base: 1.45;
+
+$bp-md: 768px;

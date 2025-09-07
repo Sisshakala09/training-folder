@@ -1,0 +1,83 @@
+@import '../../../styles/_variables.scss';
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-sm $space-md;
+  background: $color-card;
+  border-bottom: 1px solid rgba(31,41,55,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+
+  .brand {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $color-text;
+    display:flex;
+    gap: $space-sm;
+    align-items:center;
+  }
+
+  .links {
+    display:flex;
+    gap: $space-sm;
+    align-items:center;
+  }
+
+  .links a, .links button {
+    color: $color-text;
+    font-weight: 600;
+    padding: 0.45rem 0.8rem;
+    border-radius: 10px;
+  }
+
+  .links a:hover, .links button:hover {
+    background: rgba(31,41,55,0.03);
+    transform: translateY(-1px);
+  }
+
+  // Search dropdown avatar initials
+  .search-panel {
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #374151;
+      font-weight: 700;
+      border: 1px solid #e5e7eb;
+    }
+    .avatar::after { content: attr(data-initial); }
+  }
+
+  // removed icon-link; using text links again
+
+  // search input responsive width
+  .search .input { min-width: 260px; }
+  .search .search-panel { width: 520px; }
+}
+
+@media (max-width: $bp-md) {
+  .nav {
+    padding: $space-xs $space-sm;
+    .brand{ font-size: 1rem; }
+    .links{ gap:$space-xs; }
+    .greet { display: none; }
+    .search .input { min-width: 180px; }
+    .search .search-panel { width: min(92vw, 420px); }
+  }
+}
+
+@media (max-width: 520px) {
+  .nav {
+    .search { flex: 1 1 auto; }
+    .search .input { width: 100%; min-width: 0; }
+    .search .search-panel { width: 100%; }
+  }
+}

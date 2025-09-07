@@ -1,0 +1,32 @@
+<div class="auth-page">
+  <!-- ngSubmit is important -->
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card" aria-labelledby="login-heading" novalidate>
+    <h2 id="login-heading">Login</h2>
+
+    <label>
+      <span class="label-text">Username or Email</span>
+      <input class="input" type="text" formControlName="userNameOrEmail" aria-required="true" />
+    </label>
+
+    <label>
+      <span class="label-text">Password</span>
+      <input class="input" type="password" formControlName="password" aria-required="true" />
+    </label>
+
+    <div *ngIf="error" class="error" role="alert">{{error}}</div>
+
+    <div class="actions">
+      <!-- important: type="submit" ensures ngSubmit triggers -->
+      <button type="submit" [disabled]="loading" class="btn-primary">
+        {{ loading ? 'Signing in...' : 'Sign in' }}
+      </button>
+
+      <!-- manual click fallback to guarantee submit handler runs (useful while debugging) -->
+      <button type="button" (click)="submit()" style="display:none" id="manualSubmitBtn">manual</button>
+
+      <a routerLink="/auth/register" class="small">Register</a>
+    </div>
+
+    <p class="muted">Forgot password? <a href="#">Reset</a></p>
+  </form>
+</div>

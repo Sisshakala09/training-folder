@@ -1,0 +1,61 @@
+<!-- src/app/shared/navbar/navbar.component.html -->
+<nav class="nav">
+  <div class="brand">
+    <button *ngIf="showBack" class="btn-ghost small" (click)="goBack()" aria-label="Go back" style="margin-right:8px;">← Back</button>
+    <a routerLink="/">ProfileBook</a>
+  </div>
+
+  <div class="links" style="gap:12px; align-items:center;">
+    <div class="search" style="position:relative; display:flex; align-items:center; gap:6px;">
+      <input class="input" type="text" placeholder="Search users or posts" [(ngModel)]="q" (input)="onSearch()" (keydown.escape)="clearSearch()" />
+      <button class="btn-ghost" [routerLink]="['/search']" [queryParams]="{ q: q || undefined }">Search</button>
+  <div class="search-panel" *ngIf="open && (users.length || posts.length)" style="position:absolute; top:110%; left:0; background:#fff; border:1px solid #e5e7eb; border-radius:10px; max-height:420px; overflow:auto; box-shadow: 0 10px 20px rgba(0,0,0,0.08); z-index:20;">
+        <div *ngIf="users.length" style="padding:8px 10px; border-bottom:1px solid #f3f4f6; font-weight:600;">Users</div>
+        <a *ngFor="let u of users" [routerLink]="['/users', u.id]" (click)="closeSearch()" style="display:flex; gap:10px; align-items:center; padding:10px; text-decoration:none; color:inherit;">
+          <ng-container *ngIf="img(u.profileImageUrl || u.profileImage) as uimg; else initialU">
+            <img [src]="uimg" alt="avatar" style="width:32px; height:32px; border-radius:50%; object-fit:cover; border:1px solid #e5e7eb;"/>
+          </ng-container>
+          <ng-template #initialU>
+            <div class="avatar" [attr.data-initial]="(u.userName||u.email||'?')[0].toUpperCase()"></div>
+          </ng-template>
+          <div style="min-width:0;">
+            <div style="font-weight:600;">{{ u.userName || u.email }}</div>
+            <div class="small muted" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ u.email }}</div>
+          </div>
+        </a>
+
+        <div *ngIf="posts.length" style="padding:8px 10px; border-top:1px solid #f3f4f6; font-weight:600;">Posts</div>
+        <a *ngFor="let p of posts" [routerLink]="['/posts', p.id]" (click)="closeSearch()" style="display:flex; gap:10px; align-items:center; padding:10px; text-decoration:none; color:inherit;">
+          <ng-container *ngIf="userImg(p.user) as pimg; else initialP">
+            <img [src]="pimg" alt="avatar" style="width:32px; height:32px; border-radius:50%; object-fit:cover; border:1px solid #e5e7eb;"/>
+          </ng-container>
+          <ng-template #initialP>
+            <div class="avatar" [attr.data-initial]="(p.user?.userName||'?')[0].toUpperCase()"></div>
+          </ng-template>
+          <div style="min-width:0;">
+            <div style="font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ p.content }}</div>
+            <div class="small muted">by {{ p.user?.userName }}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <ng-container *ngIf="(auth.user$ | async) as user; else guest">
+      <span class="small greet">Hi, {{ user.username || user.email }}</span>
+      <a routerLink="/home">Home</a>
+      <ng-container *ngIf="!auth.isAdmin(); else adminLinks">
+        <a routerLink="/chat">Messages</a>
+        <a routerLink="/posts/new">New Post</a>
+        <a routerLink="/reports">Reports</a>
+      </ng-container>
+      <ng-template #adminLinks>
+        <a routerLink="/admin">Admin</a>
+      </ng-template>
+      <button class="btn-ghost" (click)="logout()">Logout</button>
+    </ng-container>
+
+    <ng-template #guest>
+      <a routerLink="/auth/login">Login</a>
+      <a routerLink="/auth/register">Sign up</a>
+    </ng-template>
+  </div>
+</nav>

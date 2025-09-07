@@ -1,0 +1,29 @@
+<!-- src/app/auth/register/register.component.html -->
+<div class="auth-page">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card" aria-labelledby="register-heading">
+    <h2 id="register-heading">Create account</h2>
+
+    <label>
+      <span class="label-text">Username</span>
+      <input class="input" type="text" formControlName="username" aria-required="true" />
+    </label>
+
+    <label>
+      <span class="label-text">Email</span>
+      <input class="input" type="email" formControlName="email" aria-required="true" />
+    </label>
+
+    <label>
+      <span class="label-text">Password</span>
+      <input class="input" type="password" formControlName="password" aria-required="true" />
+    </label>
+
+    <div *ngIf="error" class="error" role="alert">{{error}}</div>
+
+    <button type="submit" [disabled]="loading" class="btn-primary">
+      {{ loading ? 'Creating...' : 'Create account' }}
+    </button>
+
+    <p class="muted">Already have an account? <a routerLink="/auth/login">Login</a></p>
+  </form>
+</div>
